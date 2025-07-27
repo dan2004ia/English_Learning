@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:id="@+id/main"
+    android:layout_height="match_parent"
+    android:background="@color/pink1"
+    android:padding="20dp">
+
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="240dp"
+        android:layout_height="240dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="432dp"
+        android:background="@drawable/button_border"
+        android:importantForAccessibility="no"
+        android:paddingTop="20dp"
+        android:src="@drawable/learn"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/welcomeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        android:fontFamily="cursive"
+        android:padding="20dp"
+        android:text="@string/welcome_to_the_Words_App"
+        android:textColor="#CAA13E"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnStartLearning"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:backgroundTint="@color/p"
+        android:padding="10dp"
+        android:text="@string/Start_learning"
+        android:textColor="#FFBF2A"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:cornerRadius="16dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnWordList"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btnWordList"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/button_border"
+        android:backgroundTint="@color/bo"
+        android:padding="10dp"
+        android:text="@string/Word_list"
+        android:textColor="#FFD54F"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnQuiz"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btnQuiz"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="128dp"
+        android:backgroundTint="@color/p"
+        android:padding="10dp"
+        android:text="@string/Quick_test"
+        android:textColor="#FFD112"
+        android:textSize="18sp"
+        android:layout_marginTop="10dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btnLogout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+         android:background="@drawable/button_border"
+        android:backgroundTint="@color/bo"
+        android:padding="10dp"
+        android:text="@string/Log_out"
+        android:textColor="#FFD54F"
+        android:textSize="20sp"
+        android:layout_marginTop="30dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btnQuiz"
+        app:layout_constraintVertical_bias="0.45" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
