@@ -33,6 +33,23 @@
     <string name="Word_test">Word test</string>
     <string name="Verification">Verification</string>
     <string name="phone">Mobile Number</string>
+    <string name="Notification">Notification</string>
+    <string name="Dark_mode">Dark_mode</string>
+    <string name="about">about</string>
+    <string name="Privacy">Privacy</string>
+    <string name="Settings">Settings</string>
+    <string name="Security">Security</string>
+    <string name="Edit_personal_detalis">Edit_personal_detalis</string>
+    <string name="Language">Language</string>
+    <string name="back">back</string>
+    <string name="image">image</string>
+    <string name="WordImage">WordImage</string>
+    <string name="About">About App</string>
+    <string name="aboutApp">عن التطبيق</string>
+    <string name="Cloud">غيمة</string>
+    <string name="Logout">Logout</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

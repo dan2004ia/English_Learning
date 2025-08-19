@@ -4,10 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.myapplication.databinding.ActivityWordListBinding;
 
 public class HomeActivity2 extends AppCompatActivity {
 
@@ -22,30 +21,38 @@ public class HomeActivity2 extends AppCompatActivity {
         btnWordList = findViewById(R.id.btnWordList);
         btnQuickTest = findViewById(R.id.btnQuiz);
 
-
-        btnStartLearning.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(HomeActivity2.this, LearningActivity.class);
-                startActivity(intent);
-            }
+         btnStartLearning.setOnClickListener(v -> {
+            Intent intent = new Intent(HomeActivity2.this, LearningActivity.class);
+            startActivity(intent);
         });
 
+         btnWordList.setOnClickListener(v -> {
+            Intent intent = new Intent(HomeActivity2.this, WordListActivity.class);
+            startActivity(intent);
+        });
 
-//        btnWordList.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(HomeActivity2.this,WordListActivity.class);
-//                startActivity(intent);
-//            }
-//        });
-//
-//        btnQuickTest.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(HomeActivity2.this, QuizActivity.class);
-//                startActivity(intent);
-//            }
-//        });
+         btnQuickTest.setOnClickListener(v -> {
+            Intent intent = new Intent(HomeActivity2.this, QuizActivity.class);
+            startActivity(intent);
+        });
+
+         Button btnAbout = findViewById(R.id.btnAboutApp);
+        btnAbout.setOnClickListener(v -> {
+            Intent intent = new Intent(HomeActivity2.this, AboutActivity.class);
+            startActivity(intent);
+        });
+
+        ImageView ImageIcon = findViewById(R.id.imageIcon);
+        ImageIcon.setOnClickListener(v -> {
+            Intent intent = new Intent(HomeActivity2.this, SettingActivity.class);
+            startActivity(intent);
+        });
+
+        WordOfDayFragment fragment = new WordOfDayFragment();
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragmentWordContainer, fragment)
+                .commit();
+
+
     }
 }

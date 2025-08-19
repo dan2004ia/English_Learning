@@ -7,7 +7,7 @@
     android:padding="20dp"
     android:orientation="vertical"
     android:gravity="center_horizontal"
-    android:background="@color/pink1"
+    android:background="@drawable/gradient"
     tools:context=".HomeActivity">
 
     <ImageView
@@ -26,7 +26,7 @@
         android:id="@+id/tv_welcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-         android:layout_margin="16dp"
+         android:layout_marginTop="50dp"
         android:fontFamily="cursive"
         android:text="@string/WelcomeToHomePage"
         android:textColor="@color/title"

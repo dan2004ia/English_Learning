@@ -7,8 +7,8 @@
 
     <!-- الإطار -->
     <stroke
-        android:width="6dp"
-        android:color="#B39DDB" /> <!-- غيّر اللون هنا كما تريد -->
+        android:width="4dp"
+        android:color="#9B7CD3" /> <!-- غيّر اللون هنا كما تريد -->
 
     <!-- الزوايا -->
     <corners android:radius="16dp" />

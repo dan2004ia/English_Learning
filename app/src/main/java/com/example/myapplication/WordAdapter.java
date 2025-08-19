@@ -4,15 +4,13 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
-
 import java.util.List;
 
-public class WordAdapter extends RecyclerView.Adapter<WordAdapter.WordViewHolder>{
+public class WordAdapter extends BaseAdapter {
 
     private List<Word> wordList;
     private Context context;
@@ -20,38 +18,39 @@ public class WordAdapter extends RecyclerView.Adapter<WordAdapter.WordViewHolder
     public WordAdapter(Context context, List<Word> wordList) {
         this.context = context;
         this.wordList = wordList;
-    }
 
-
-    @NonNull
-    @Override
-    public WordViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_word, parent, false);
-        return new WordViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull WordViewHolder holder, int position) {
-        Word word = wordList.get(position);
-        holder.textEnglish.setText(word.getEnglish());
-        holder.textArabic.setText(word.getArabic());
-        holder.imageWord.setImageResource(word.getImageResId());
-    }
-
-    @Override
-    public int getItemCount() {
+    public int getCount() {
         return wordList.size();
     }
 
-    public class WordViewHolder extends RecyclerView.ViewHolder {
-        TextView textEnglish, textArabic;
-        ImageView imageWord;
+    @Override
+    public Object getItem(int position) {
+        return wordList.get(position);
+    }
 
-        public WordViewHolder(@NonNull View itemView) {
-            super(itemView);
-            textEnglish = itemView.findViewById(R.id.textEnglish);
-            textArabic = itemView.findViewById(R.id.textArabic);
-            imageWord = itemView.findViewById(R.id.imageWord);
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        if (convertView == null) {
+            convertView = LayoutInflater.from(context).inflate(R.layout.item_word, parent, false);
         }
+
+        ImageView imageResId = convertView.findViewById(R.id.imageResId );
+        TextView textEnglish = convertView.findViewById(R.id.tvEnglishWord);
+        TextView textArabic = convertView.findViewById(R.id.tvArabicMeaning);
+
+        Word word = wordList.get(position);
+        imageResId.setImageResource(word.getImageResId());
+        textEnglish.setText(word.getEnglish());
+        textArabic.setText(word.getArabic());
+
+        return convertView;
     }
 }

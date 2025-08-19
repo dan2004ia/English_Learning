@@ -35,8 +35,7 @@ public class LearningActivity extends AppCompatActivity {
         btnNext = findViewById(R.id.btnNext);
         btnBack = findViewById(R.id.btnBack);
 
-        // إنشاء قائمة الكلمات
-        wordList = new ArrayList<>();
+         wordList = new ArrayList<>();
         wordList.add(new Word("Cloud", "غيمة", R.drawable.cloud));
         wordList.add(new Word("School", "مدرسة", R.drawable.school));
         wordList.add(new Word("Tree", "شجرة", R.drawable.tree));
@@ -44,8 +43,7 @@ public class LearningActivity extends AppCompatActivity {
         wordList.add(new Word("Door", "باب", R.drawable.door));
 
 
-        // عرض أول كلمة
-        showWord(currentIndex);
+         showWord(currentIndex);
 
 
         btnNext.setOnClickListener(new View.OnClickListener() {
@@ -62,8 +60,7 @@ public class LearningActivity extends AppCompatActivity {
             }
         });
 
-        // زر الرجوع
-        btnBack.setOnClickListener(new View.OnClickListener() {
+         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(LearningActivity.this, HomeActivity2.class);

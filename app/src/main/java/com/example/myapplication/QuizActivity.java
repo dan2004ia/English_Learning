@@ -2,105 +2,152 @@ package com.example.myapplication;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
+import android.os.Handler;
+import android.os.Looper;
 import android.widget.Button;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 
-public class QuizActivity extends AppCompatActivity{
+public class QuizActivity extends AppCompatActivity {
 
-    private TextView textQuestion;
-    private RadioGroup optionsGroup;
-    private RadioButton option1, option2, option3, option4;
-    private Button btnCheck, btnNext;
-
-    private List<com.example.myapplication.Question> questionList;
-    private int currentQuestionIndex = 0;
-    private boolean answered = false;
+    private TextView tvQuestionNumber, tvQuestion, tvScore;
+    private Button btnOption1, btnOption2, btnOption3, btnOption4;
+    private ArrayList<Question> questionList;
+    private int currentIndex = 0;
+    private int score = 0;
+    private final int NEXT_DELAY_MS = 1500;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quize);
 
-        // ربط العناصر بالواجهة
-        textQuestion = findViewById(R.id.test_question);
-        optionsGroup = findViewById(R.id.option_group);
-        option1 = findViewById(R.id.option1);
-        option2 = findViewById(R.id.option2);
-        option3 = findViewById(R.id.option3);
-        option4 = findViewById(R.id.option4);
-        btnCheck = findViewById(R.id.btn_check);
-        btnNext = findViewById(R.id.btnNext);
+        tvQuestionNumber = findViewById(R.id.tvQuestionNumber);
+        tvQuestion = findViewById(R.id.tvQuestion);
+        tvScore = findViewById(R.id.tvScore);
+        btnOption1 = findViewById(R.id.btnOption1);
+        btnOption2 = findViewById(R.id.btnOption2);
+        btnOption3 = findViewById(R.id.btnOption3);
+        btnOption4 = findViewById(R.id.btnOption4);
 
-        // تجهيز الأسئلة
-        prepareQuestions();
-        showQuestion();
-
-        // عند الضغط على "تحقق"
-        btnCheck.setOnClickListener(v -> {
-            if (!answered) {
-                int selectedId = optionsGroup.getCheckedRadioButtonId();
-                if (selectedId == -1) {
-                    Toast.makeText(this, "Please choose an answer !", Toast.LENGTH_SHORT).show();
-                } else {
-                    checkAnswer(selectedId);
-                    answered = true;
-                }
-            }
-        });
-
-        // عند الضغط على "التالي"
-        btnNext.setOnClickListener(v -> {
-            currentQuestionIndex++;
-            if (currentQuestionIndex < questionList.size()) {
-                showQuestion();
-                answered = false;
-            } else {
-                Toast.makeText(this, "The test is over !", Toast.LENGTH_LONG).show();
-                finish();
-            }
-        });
+        initQuestions();
+        showQuestion(currentIndex);
+        updateScore();
+        setOptionListeners();
     }
 
-
-    private void prepareQuestions() {
+    private void initQuestions() {
         questionList = new ArrayList<>();
-        questionList.add(new com.example.myapplication.Question("cloud", "طاولة", "شجرة", "غيمة", "مدرسة", 1));
-        questionList.add(new com.example.myapplication.Question("table", "قلم", "طاولة", "بيت", "ممحاة", 2));
-        questionList.add(new com.example.myapplication.Question("laptop", "كتاب", "لابتوب", "تلفاز", "هاتف", 3));
+        questionList.add(new Question("What is the meaning of 'Home'?",
+                Arrays.asList("منزل", "هاتف", "حديقة", "مدرسة"), 0));
+        questionList.add(new Question("What is the meaning of 'Door'?",
+                Arrays.asList("كتاب", "شباك", "باب", "بيت"), 2));
+        questionList.add(new Question("What is the meaning of 'Cloud'?",
+                Arrays.asList("سماء", "نجمة", "غيمة", "نافذة"), 2));
+        questionList.add(new Question("What is the meaning of 'School'?",
+                Arrays.asList("سيارة", "جامعة", "مكتبة", "مدرسة"), 3));
+        questionList.add(new Question("What is the meaning of 'Laptop'?",
+                Arrays.asList("سيارة", "هاتف", "تلفاز", "لابتوب"), 3));
     }
 
-    // عرض السؤال الحالي
-    private void showQuestion() {
-        com.example.myapplication.Question q = questionList.get(currentQuestionIndex);
-        textQuestion.setText(q.getWord());
-        option1.setText(q.getOption1());
-        option2.setText(q.getOption2());
-        option3.setText(q.getOption3());
-        option4.setText(q.getOption4());
-        optionsGroup.clearCheck();
+    private void showQuestion(int index) {
+        Question q = questionList.get(index);
+        tvQuestionNumber.setText("السؤال " + (index + 1) + " / " + questionList.size());
+        tvQuestion.setText(q.getQuestion());
+
+        btnOption1.setText(q.getOptions().get(0));
+        btnOption2.setText(q.getOptions().get(1));
+        btnOption3.setText(q.getOptions().get(2));
+        btnOption4.setText(q.getOptions().get(3));
+
+        resetOptionButtons();
+        enableOptions(true);
     }
 
-    // التحقق من الإجابة
-    private void checkAnswer(int selectedId) {
-        com.example.myapplication.Question q = questionList.get(currentQuestionIndex);
-        int correctOptionId = q.getCorrectOptionIndex();
-
-        RadioButton selectedRadio = findViewById(selectedId);
-        int selectedIndex = optionsGroup.indexOfChild(selectedRadio) + 1;
-
-        if (selectedIndex == correctOptionId) {
-            Toast.makeText(this, "Correct Answer 🎉", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(this, "Wrong Answer ❌", Toast.LENGTH_SHORT).show();
+    private void resetOptionButtons() {
+        Button[] buttons = {btnOption1, btnOption2, btnOption3, btnOption4};
+        for (Button b : buttons) {
+            b.setEnabled(true);
+            b.setBackgroundResource(R.drawable.option_button);
+            b.setTextColor(getResources().getColor(android.R.color.white));
         }
+    }
+
+    private void enableOptions(boolean enable) {
+        btnOption1.setEnabled(enable);
+        btnOption2.setEnabled(enable);
+        btnOption3.setEnabled(enable);
+        btnOption4.setEnabled(enable);
+    }
+
+    private void setOptionListeners() {
+        btnOption1.setOnClickListener(v -> handleAnswer(0, btnOption1));
+        btnOption2.setOnClickListener(v -> handleAnswer(1, btnOption2));
+        btnOption3.setOnClickListener(v -> handleAnswer(2, btnOption3));
+        btnOption4.setOnClickListener(v -> handleAnswer(3, btnOption4));
+    }
+
+    private void handleAnswer(final int selectedIndex, final Button selectedBtn) {
+        enableOptions(false);
+        Question q = questionList.get(currentIndex);
+        int correct = q.getCorrectIndex();
+
+        if (selectedIndex == correct) {
+            score++;
+            selectedBtn.setBackgroundResource(R.drawable.option_button_correct);
+        } else {
+            selectedBtn.setBackgroundResource(R.drawable.option_button_wrong);
+            Button[] buttons = {btnOption1, btnOption2, btnOption3, btnOption4};
+            buttons[correct].setBackgroundResource(R.drawable.option_button_correct);
+        }
+
+        updateScore();
+
+        new Handler(Looper.getMainLooper()).postDelayed(() -> {
+            currentIndex++;
+            if (currentIndex < questionList.size()) {
+                showQuestion(currentIndex);
+            } else {
+                showResult();
+            }
+        }, NEXT_DELAY_MS);
+    }
+
+
+    private void updateScore() {
+        tvScore.setText("النتيجة: " + score + " / " + questionList.size());
+    }
+
+    private void showResult() {
+        int correct = score;
+        int wrong = questionList.size() - score;
+        int attempts = questionList.size();
+
+        Intent intent = new Intent(QuizActivity.this, ResultsActivity.class);
+        intent.putExtra("CORRECT", correct);
+        intent.putExtra("WRONG", wrong);
+        intent.putExtra("ATTEMPTS", attempts);
+        startActivity(intent);
+        finish();
+    }
+
+    private static class Question {
+        private final String question;
+        private final ArrayList<String> options;
+        private final int correctIndex;
+
+        public Question(String question, java.util.List<String> options, int correctIndex) {
+            this.question = question;
+            this.options = new ArrayList<>(options);
+            this.correctIndex = correctIndex;
+        }
+
+        public String getQuestion() { return question; }
+        public ArrayList<String> getOptions() { return options; }
+        public int getCorrectIndex() { return correctIndex; }
     }
 }

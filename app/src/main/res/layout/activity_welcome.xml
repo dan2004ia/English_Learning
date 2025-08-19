@@ -1,64 +1,71 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/pink1"
-    android:padding="20dp"
-    tools:context=".WelcomeActivity"
-    android:gravity="center_horizontal">
+    android:background="@drawable/gradient"
+    android:id="@+id/main"
+    android:padding="20dp">
+
 
     <TextView
-        android:id="@+id/learn"
+        android:id="@+id/tvWelcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
-        android:fontFamily="cursive"
-        android:padding="20dp"
-        android:text="@string/englishLearner"
-        android:textColor="@color/title"
-        android:textSize="50sp"
-        android:textStyle="bold" />
+        android:text="W e l c o m e t o M y A p p"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="150dp" />
+
+    <TextView
+        android:id="@+id/tvDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Create an account to get started on your teach and learning"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:layout_below="@id/tvWelcome"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:paddingHorizontal="30dp" />
+
 
     <ImageView
-        android:id="@+id/image"
         android:layout_width="250dp"
         android:layout_height="250dp"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/button_border"
-        android:importantForAccessibility="no"
-        android:paddingTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="300dp"
         android:src="@drawable/welcome" />
 
     <Button
-        android:id="@+id/btn_login"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
-        android:background="@drawable/button_border"
-        android:padding="20dp"
-        android:text="@string/login"
-        android:layout_marginRight="30dp"
-        android:layout_marginLeft="30dp"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="25sp"
-        android:textStyle="bold" />
+        android:id="@+id/btnSignUp"
+        android:layout_width="400dp"
+        android:layout_height="60dp"
+        android:textSize="20sp"
+        android:padding="10dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="151dp"
+        android:backgroundTint="@color/pink1"
+        android:text="@string/Signup"
+        android:layout_marginRight="50dp"
+        android:layout_marginLeft="50dp"
+        android:textColor="@color/white" />
 
     <Button
-        android:id="@+id/btn_signup"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginLeft="30dp"
-        android:background="@drawable/button_border"
-        android:padding="20dp"
-        android:text="@string/Signup"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="25sp" />
+        android:id="@+id/btnLogin"
+        android:layout_below="@id/btnSignUp"
+        android:layout_marginTop="-280dp"
+        android:layout_width="400dp"
+        android:layout_height="60dp"
+        android:textSize="20sp"
+        android:layout_marginRight="50dp"
+        android:layout_marginLeft="50dp"
+        android:backgroundTint="@color/pink"
+        android:padding="10dp"
+        android:text="@string/login"
+     />
 
-</LinearLayout>
+</RelativeLayout>

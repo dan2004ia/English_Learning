@@ -1,0 +1,29 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/card"
+    android:padding="16dp"
+    android:layout_margin="16dp"
+    android:elevation="4dp">
+
+    <TextView
+        android:id="@+id/tvWordOfDay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Word of the Day: Cloud - غيمة"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvMeaning"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Learn this word and try to use it today!"
+        android:textColor="#C79D57"
+         android:textStyle="bold"
+        android:textSize="15sp"
+        android:layout_marginTop="8dp" />
+
+</LinearLayout>

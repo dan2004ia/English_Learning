@@ -1,43 +1,19 @@
 package com.example.myapplication;
 
+import java.util.List;
+
 public class Question {
-    private String word;
-    private String option1;
-    private String option2;
-    private String option3;
-    private String option4;
-    private int correctOptionIndex;
+    private String question;
+    private List<String> options;
+    private int correctIndex;
 
-    public Question(String word, String option1, String option2, String option3, String option4, int correctOptionIndex) {
-        this.word = word;
-        this.option1 = option1;
-        this.option2 = option2;
-        this.option3 = option3;
-        this.option4 = option4;
-        this.correctOptionIndex = correctOptionIndex;
+    public Question(String question, List<String> options, int correctIndex) {
+        this.question = question;
+        this.options = options;
+        this.correctIndex = correctIndex;
     }
 
-    public String getWord() {
-        return word;
-    }
-
-    public String getOption1() {
-        return option1;
-    }
-
-    public String getOption2() {
-        return option2;
-    }
-
-    public String getOption3() {
-        return option3;
-    }
-
-    public String getOption4() {
-        return option4;
-    }
-
-    public int getCorrectOptionIndex() {
-        return correctOptionIndex;
-    }
+    public String getQuestion() { return question; }
+    public List<String> getOptions() { return options; }
+    public int getCorrectIndex() { return correctIndex; }
 }

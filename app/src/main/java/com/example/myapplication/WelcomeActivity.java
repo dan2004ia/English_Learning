@@ -12,8 +12,8 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class WelcomeActivity extends AppCompatActivity {
 
-     private Button btn_login;
-     private Button btn_signup;
+     private Button btnLogin;
+     private Button btnSignUp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,10 +27,10 @@ public class WelcomeActivity extends AppCompatActivity {
             return insets;
         });
 
-        btn_login = findViewById(R.id.btn_login);
-        btn_signup = findViewById(R.id.btn_signup);
+        btnLogin= findViewById(R.id.btnLogin);
+        btnSignUp = findViewById(R.id.btnSignUp);
 
-        btn_login.setOnClickListener(new View.OnClickListener() {
+        btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                  Intent intent = new Intent(WelcomeActivity.this, LoginActivity.class);
@@ -38,7 +38,7 @@ public class WelcomeActivity extends AppCompatActivity {
             }
         });
 
-         btn_signup.setOnClickListener(new View.OnClickListener() {
+        btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                  Intent intent = new Intent(WelcomeActivity.this, SignUp.class);
