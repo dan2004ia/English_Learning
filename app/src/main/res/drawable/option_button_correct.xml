@@ -1,0 +1,9 @@
+<!-- res/drawable/option_button_correct.xml -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+    <solid android:color="#4CAF50" /> <!-- لون أخضر -->
+
+    <corners android:radius="12dp" />
+
+</shape>
