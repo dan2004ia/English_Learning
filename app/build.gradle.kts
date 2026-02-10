@@ -42,7 +42,8 @@ dependencies {
     implementation(libs.material)
     implementation(libs.activity)
     implementation(libs.constraintlayout)
-    implementation("androidx.annotation:annotation:1.8.0") // استخدمنا الاسم الكامل للمكتبة
+    implementation("androidx.annotation:annotation:1.8.0")
+    implementation("com.android.volley:volley:1.2.1")
     implementation(libs.lifecycle.livedata.ktx)
     implementation(libs.lifecycle.viewmodel.ktx)
     testImplementation(libs.junit)
@@ -51,11 +52,9 @@ dependencies {
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
 
-    // استيراد قائمة إصدارات Firebase الموحدة (BoM)
-    // هذا يضمن أن كل مكتبات Firebase التي تستخدمينها متوافقة مع بعضها
+
     implementation(platform("com.google.firebase:firebase-bom:33.1.0"))
 
-    // الآن أضيفي مكتبات Firebase التي تحتاجينها بدون تحديد رقم الإصدار
-    implementation("com.google.firebase:firebase-analytics")
+     implementation("com.google.firebase:firebase-analytics")
     implementation("com.google.firebase:firebase-auth")
 }
